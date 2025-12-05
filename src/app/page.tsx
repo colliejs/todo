@@ -6,14 +6,16 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { TodoList } from "@/components/todos/TodoList";
 import { Todo } from "@/lib/types";
 import { api, TodoFilter, TodoSort } from "@/lib/api";
+import { useToast } from "@/components/ToastProvider";
 
 export default function Home() {
   const queryClient = useQueryClient();
+  const { showToast } = useToast();
 
   const [filter, setFilter] = useState<TodoFilter>("all");
   const [sort, setSort] = useState<TodoSort>("createdAt");
 
-  const { data: todos = [] } = useQuery({
+  const { data: todos = [], isPending, isError } = useQuery({
     queryKey: ["todos", filter, sort],
     queryFn: () => api.getTodos({ status: filter, sortBy: sort }),
   });
@@ -50,6 +52,7 @@ export default function Home() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["todos"] });
+      showToast("待办事项创建成功", "success");
     },
     onError: (error, _, context) => {
       if (context?.previousTodos) {
@@ -58,6 +61,7 @@ export default function Home() {
           context.previousTodos
         );
       }
+      showToast("创建失败，请重试", "error");
     },
   });
 
@@ -90,7 +94,9 @@ export default function Home() {
       }
       return { previousTodos };
     },
-    onSuccess: (_, variables) => {},
+    onSuccess: () => {
+      showToast("待办事项更新成功", "success");
+    },
     onError: (err, newTodo, context) => {
       if (context?.previousTodos) {
         queryClient.setQueryData(
@@ -98,6 +104,7 @@ export default function Home() {
           context.previousTodos
         );
       }
+      showToast("更新失败，请重试", "error");
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["todos"] });
@@ -122,7 +129,9 @@ export default function Home() {
       }
       return { previousTodos };
     },
-    onSuccess: () => {},
+    onSuccess: () => {
+      showToast("待办事项已删除", "success");
+    },
     onError: (err, id, context) => {
       if (context?.previousTodos) {
         queryClient.setQueryData(
@@ -130,6 +139,7 @@ export default function Home() {
           context.previousTodos
         );
       }
+      showToast("删除失败，请重试", "error");
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["todos"] });
