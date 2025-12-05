@@ -75,6 +75,16 @@ export default function Home() {
       if (previousTodos) {
         queryClient.setQueryData<Todo[]>(["todos", filter, sort], (old) => {
           if (!old) return [];
+
+          if (data.completed !== undefined) {
+            if (filter === "active" && data.completed) {
+              return old.filter((t) => t.id !== id);
+            }
+            if (filter === "completed" && !data.completed) {
+              return old.filter((t) => t.id !== id);
+            }
+          }
+
           return old.map((t) => (t.id === id ? { ...t, ...data } : t));
         });
       }

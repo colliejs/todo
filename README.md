@@ -240,3 +240,11 @@ api.http                  # REST Client 測試檔
 ```
 
 
+
+
+# 本地开发
+pnpm install
+pnpm dev
+
+# demo网站
+https://todo-five-bay.vercel.app/
