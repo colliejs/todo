@@ -60,7 +60,6 @@ export const DateTimeTableCell: React.FC<DateTimeCellProps> = ({
             role="button"
             data-id="date-time-cell-icon"
             fontSize="small"
-            sx={{ fontSize: 18 }}
             tabIndex={10}
             aria-label="Open date picker"
           />
