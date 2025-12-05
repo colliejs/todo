@@ -243,8 +243,16 @@ api.http                  # REST Client 測試檔
 
 
 # 本地开发
+## 安装依赖
+```bash
 pnpm install
+```
+## 启动开发服务器
+```bash
 pnpm dev
+```
+## 访问
+http://localhost:3001
 
 # demo网站
 https://todo-five-bay.vercel.app/
