@@ -18,7 +18,6 @@ async function fetcher<T>(url: string, options?: RequestInit): Promise<T> {
   if (!data.success) {
     throw new Error(data.error.message || "An error occurred");
   }
-
   return data.data;
 }
 
@@ -29,7 +28,6 @@ export const api = {
     if (params?.status && params.status !== "all")
       searchParams.append("status", params.status);
     if (params?.sortBy) searchParams.append("sortBy", params.sortBy);
-    if (params?.search) searchParams.append("search", params.search);
 
     const queryString = searchParams.toString();
     const url = `/todos${queryString ? `?${queryString}` : ""}`;

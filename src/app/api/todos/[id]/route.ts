@@ -138,7 +138,6 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
  */
 export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 7000));
     const { id } = await params;
     const body = await request.json();
     const validationResult = updateTodoSchema.safeParse(body);

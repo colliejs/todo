@@ -4,7 +4,7 @@ import Image from "next/image";
 
 interface CustomIconButtonProps extends IconButtonProps {
   active?: boolean;
-  src?: string; 
+  src?: string; // Optional src for quick icon usage
 }
 
 export const CustomIconButton: React.FC<CustomIconButtonProps> = ({
