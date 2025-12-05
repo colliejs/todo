@@ -2,12 +2,12 @@ import React from "react";
 import { IconButton, IconButtonProps } from "@mui/material";
 import Image from "next/image";
 
-interface CustomIconButtonProps extends IconButtonProps {
+interface StyledIconButtonProps extends IconButtonProps {
   active?: boolean;
-  src?: string; // Optional src for quick icon usage
+  src?: string;
 }
 
-export const CustomIconButton: React.FC<CustomIconButtonProps> = ({
+export const StyledIconButton: React.FC<StyledIconButtonProps> = ({
   sx,
   children,
   active,

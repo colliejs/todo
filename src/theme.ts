@@ -13,8 +13,10 @@ const theme = createTheme({
       secondary: "#A6A6A6",
     },
     grey: {
+      "300": "#e0e0e0",
       "500": "#505050",
       "600": "#dcdcdc",
+      "900": "#333333",
     },
     primary: {
       main: "#4C88FF",
@@ -53,9 +55,9 @@ const theme = createTheme({
       fontWeight: 500,
     },
     body2: {
-      fontSize: "14px",
-      lineHeight: "22px",
-      fontWeight: 400,
+      fontSize: "12px",
+      lineHeight: "20px",
+      fontWeight: 500,
     },
   },
   spacing: 8,
@@ -66,8 +68,9 @@ const theme = createTheme({
     MuiTableCell: {
       styleOverrides: {
         root: {
-          paddingTop: "12px",
-          paddingBottom: "12px",
+          paddingTop: "0px",
+          paddingBottom: "0px",
+          height: "46px",
           borderBottom: "none",
         },
       },

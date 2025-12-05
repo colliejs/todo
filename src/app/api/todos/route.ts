@@ -92,6 +92,11 @@ export async function GET(request: NextRequest) {
         case 'order':
           compareValue = (a.order || 0) - (b.order || 0);
           break;
+        case 'taskID':
+          if (a.id < b.id) compareValue = -1;
+          else if (a.id > b.id) compareValue = 1;
+          else compareValue = 0;
+          break;
         case 'dueDate':
           if (!a.dueDate && !b.dueDate) compareValue = 0;
           else if (!a.dueDate) compareValue = 1;
@@ -102,8 +107,6 @@ export async function GET(request: NextRequest) {
         case 'updatedAt':
           compareValue = a[sortBy].localeCompare(b[sortBy]);
           break;
-        // case 'taskID':
-        //   break;
       }
 
       return sortDir === 'desc' ? -compareValue : compareValue;

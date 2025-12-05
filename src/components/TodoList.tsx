@@ -54,7 +54,7 @@ export const TodoList: React.FC<TodoListProps> = ({
   return (
     <Box
       sx={{
-        width: "1000px",
+        width: "930px",
         margin: "0 auto",
         px: 2.5,
       }}
@@ -106,7 +106,7 @@ export const TodoList: React.FC<TodoListProps> = ({
         <Table
           sx={{
             tableLayout: "fixed",
-            width: "904px",
+            // width: "904px",
           }}
         >
           <TableHead>
@@ -114,7 +114,6 @@ export const TodoList: React.FC<TodoListProps> = ({
               <ColumnHeader
                 label="Task Title"
                 icon="/icons/text.svg"
-                width="424px"
               />
               <ColumnHeader
                 label="Due Date"
@@ -157,7 +156,7 @@ export const TodoList: React.FC<TodoListProps> = ({
                   onClick={handleAddNew}
                   colSpan={4}
                   sx={{
-                    pl: 5,
+                    pl: 6,
                     cursor: "pointer",
                     color: "text.secondary",
                     "&:hover": { color: "text.primary" },

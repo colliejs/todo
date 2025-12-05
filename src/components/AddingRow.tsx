@@ -3,27 +3,17 @@ import React, { useState, useRef, useEffect } from "react";
 import { Box, TextField, TableRow, TableCell, Typography } from "@mui/material";
 import Image from "next/image";
 import { DateTimeTableCell } from "./DateTimeCell";
+import { formatDateTime } from "@/lib/date";
+import { StyledTextField } from "./StyledTextField";
 
 interface TodoInputProps {
   onSave: (title: string, dueDate?: string) => void;
   onCancel: () => void;
 }
 
-const formatDate = (date: Date) => {
-  return new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  }).format(date);
-};
-
 export const AddingRow: React.FC<TodoInputProps> = ({ onSave, onCancel }) => {
   const [title, setTitle] = useState("");
   const [dueDate, setDueDate] = useState<string | undefined>(undefined);
-  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const [createdAt] = useState(new Date());
 
@@ -78,14 +68,11 @@ export const AddingRow: React.FC<TodoInputProps> = ({ onSave, onCancel }) => {
           sx={{
             display: "flex",
             alignItems: "center",
-            gap: 1 / 2,
-            height: "46px",
           }}
         >
           <Image src="/icons/add.svg" alt="add" width={16} height={16} />
-          <TextField
+          <StyledTextField
             fullWidth
-            variant="outlined"
             placeholder="輸入後按下Enter進行儲存"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -93,29 +80,26 @@ export const AddingRow: React.FC<TodoInputProps> = ({ onSave, onCancel }) => {
             onBlur={handleBlur}
             inputRef={inputRef}
             sx={{
-              "& .MuiInputBase-input": {
-                py: 1.6,
-              },
+              pl: 1,
             }}
           />
         </Box>
       </TableCell>
 
-      {/* 3. Due Date  */}
+      {/* 2. Due Date  */}
       <DateTimeTableCell
         date={dueDate}
         onDateChange={setDueDate}
-        onOpenChange={setIsDatePickerOpen}
       />
 
-      {/* 4. Created At */}
+      {/* 3. Created At */}
       <TableCell>
-        <Typography variant="body2" color="text.secondary">
-          {formatDate(createdAt)}
+        <Typography variant="body1" color="text.secondary">
+          {formatDateTime(createdAt)}
         </Typography>
       </TableCell>
 
-      {/* 5. Task ID */}
+      {/* 4. Task ID */}
       <TableCell></TableCell>
     </TableRow>
   );

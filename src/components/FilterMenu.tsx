@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { Menu } from "@mui/material";
-import { CustomIconButton } from "@/components/common/CustomIconButton";
-import { CustomMenuItem } from "@/components/common/CustomMenuItem";
+import { StyledIconButton } from "@/components/StyledIconButton";
+import { StyledMenuItem } from "@/components/StyledMenuItem";
 
 export type FilterType = "all" | "active" | "completed";
 
@@ -33,7 +33,7 @@ export const FilterMenu: React.FC<TodoFilterMenuProps> = ({
 
   return (
     <>
-      <CustomIconButton
+      <StyledIconButton
         onClick={handleClick}
         src="/icons/filter.svg"
         active={Boolean(anchorEl)}
@@ -55,7 +55,7 @@ export const FilterMenu: React.FC<TodoFilterMenuProps> = ({
         }}
       >
         {FILTER_OPTIONS.map((option) => (
-          <CustomMenuItem
+          <StyledMenuItem
             key={option.value}
             label={option.label}
             selected={currentFilter === option.value}

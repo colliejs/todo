@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
 import { Menu } from "@mui/material";
-import { CustomIconButton } from "@/components/common/CustomIconButton";
-import { CustomMenuItem } from "@/components/common/CustomMenuItem";
+import { StyledIconButton } from "@/components/StyledIconButton";
+import { StyledMenuItem } from "@/components/StyledMenuItem";
 
-export type SortType = "dueDate" | "createdAt" | "title" | "order";
+export type SortType = "dueDate" | "createdAt" | "title" | "order" | "taskID";
 
 interface SortMenuProps {
   currentSort: SortType;
@@ -14,7 +14,7 @@ interface SortMenuProps {
 const SORT_OPTIONS: { value: SortType; label: string }[] = [
   { value: "createdAt", label: "Created At" },
   { value: "dueDate", label: "Due Date" },
-  // { value: "order", label: "Manual Order" },
+  { value: "taskID", label: "Task ID" },
 ];
 
 export const SortMenu: React.FC<SortMenuProps> = ({
@@ -33,7 +33,7 @@ export const SortMenu: React.FC<SortMenuProps> = ({
 
   return (
     <>
-      <CustomIconButton
+      <StyledIconButton
         onClick={handleClick}
         src="/icons/sorter.svg"
         active={Boolean(anchorEl)}
@@ -54,7 +54,7 @@ export const SortMenu: React.FC<SortMenuProps> = ({
         }}
       >
         {SORT_OPTIONS.map((option) => (
-          <CustomMenuItem
+          <StyledMenuItem
             key={option.value}
             label={option.label}
             selected={currentSort === option.value}

@@ -1,19 +1,14 @@
 import React from "react";
-import {
-  MenuItem,
-  ListItemText,
-  ListItemIcon,
-  Typography,
-} from "@mui/material";
+import { MenuItem, Typography } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 
-interface CustomMenuItemProps {
+interface StyledMenuItemProps {
   label: string;
   selected: boolean;
   onClick: () => void;
 }
 
-export const CustomMenuItem: React.FC<CustomMenuItemProps> = ({
+export const StyledMenuItem: React.FC<StyledMenuItemProps> = ({
   label,
   selected,
   onClick,
@@ -28,7 +23,7 @@ export const CustomMenuItem: React.FC<CustomMenuItemProps> = ({
         px: 2,
       }}
     >
-      <Typography variant="body2">{label}</Typography>
+      <Typography variant="body1">{label}</Typography>
       {selected && <CheckIcon fontSize="small" />}
     </MenuItem>
   );

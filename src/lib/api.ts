@@ -3,7 +3,7 @@ import { Todo, ApiResponse } from "./types";
 const API_BASE_URL = "/api";
 
 export type TodoFilter = "all" | "active" | "completed";
-export type TodoSort = "dueDate" | "createdAt" | "title" | "order";
+export type TodoSort = "dueDate" | "createdAt" | "title" | "order" | "taskID";
 
 interface GetTodosParams {
   status?: TodoFilter;

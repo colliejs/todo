@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { TodoList } from "@/components/todos/TodoList";
+import { TodoList } from "@/components/TodoList";
 import { Todo } from "@/lib/types";
 import { api, TodoFilter, TodoSort } from "@/lib/api";
 

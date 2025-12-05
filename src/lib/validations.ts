@@ -20,7 +20,7 @@ export const updateTodoSchema = z.object({
 export const querySchema = z.object({
   status: z.enum(['all', 'active', 'completed']).optional().default('all'),
   search: z.string().optional(),
-  sortBy: z.enum(['createdAt', 'updatedAt', 'order', 'dueDate']).optional().default('createdAt'),
+  sortBy: z.enum(['createdAt', 'updatedAt', 'order', 'dueDate', 'title', 'taskID']).optional().default('createdAt'),
   sortDir: z.enum(['asc', 'desc']).optional().default('desc'),
 });
 

@@ -1,19 +1,13 @@
 import React, { useState } from "react";
 import { TableCell, Box, Typography } from "@mui/material";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import { DateTimePicker } from "./DatePicker";
-import dayjs from "dayjs";
-import { formatDateTime } from "@/lib/date";
+import { formatDateTime, isOverdue } from "@/lib/date";
+import Image from "next/image";
 interface DateTimeCellProps {
   date?: string;
   onDateChange: (newDate: string) => void;
   onOpenChange?: (isOpen: boolean) => void;
 }
-
-const isOverdue = (dateString?: string) => {
-  if (!dateString) return false;
-  return new Date(dateString) < new Date();
-};
 
 export const DateTimeTableCell: React.FC<DateTimeCellProps> = ({
   date,
@@ -52,19 +46,26 @@ export const DateTimeTableCell: React.FC<DateTimeCellProps> = ({
           display: "inline-flex",
           alignItems: "center",
           minHeight: "24px",
-          color: overdue ? "error.main" : "text.primary",
         }}
       >
         {!date ? (
-          <CalendarTodayIcon
+          <Image
+            src="/icons/calendar.svg"
+            alt="calendar"
+            width={16}
+            height={16}
             role="button"
             data-id="date-time-cell-icon"
-            fontSize="small"
             tabIndex={10}
             aria-label="Open date picker"
           />
         ) : (
-          <Typography variant="body2">
+          <Typography
+            variant="body1"
+            sx={{
+              color: overdue ? "error.main" : "text.primary",
+            }}
+          >
             {formatDateTime(date)}
           </Typography>
         )}

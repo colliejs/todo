@@ -67,8 +67,8 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
               ".MuiPickersLayout-actionBar": {
                 padding: 2,
                 "& button:first-of-type": {
-                  bgcolor: "#e0e0e0",
-                  color: "#333",
+                  bgcolor: "grey.300",
+                  color: "grey.900",
                   fontWeight: "bold",
                   mr: 1,
                   borderRadius: 1,

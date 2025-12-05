@@ -14,6 +14,7 @@ import { Todo } from "@/lib/types";
 import Image from "next/image";
 import { DateTimeTableCell } from "./DateTimeCell";
 import { formatDateTime } from "@/lib/date";
+import { StyledTextField } from "./StyledTextField";
 
 interface TodoItemProps {
   todo: Todo;
@@ -68,7 +69,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <TableCell sx={{ width: "424px" }}>
+      <TableCell>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Checkbox
             checked={todo.completed}
@@ -92,26 +93,20 @@ export const TodoItem: React.FC<TodoItemProps> = ({
             color="primary"
             sx={{
               p: 0,
-              pr: 1,
               "&.Mui-checked": {
                 color: "primary.main",
               },
             }}
           />
           {isEditingTitle ? (
-            <TextField
-              fullWidth
-              variant="standard"
+            <StyledTextField
               value={editTitle}
               onChange={(e) => setEditTitle(e.target.value)}
               onBlur={handleTitleSave}
               onKeyDown={handleKeyDown}
               inputRef={inputRef}
-              InputProps={{ disableUnderline: true }}
               sx={{
-                "& .MuiInputBase-input": {
-                  py: 0,
-                },
+                pl: 1,
               }}
             />
           ) : (
@@ -122,6 +117,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({
                 cursor: "pointer",
                 textDecoration: todo.completed ? "line-through" : "none",
                 color: todo.completed ? "text.secondary" : "text.primary",
+                pl: 2,
               }}
             >
               {todo.title}
@@ -136,22 +132,19 @@ export const TodoItem: React.FC<TodoItemProps> = ({
         onDateChange={(newDate) => onUpdate(todo.id, { dueDate: newDate })}
       />
 
-      <TableCell
-        sx={{
-          width: "160px",
-        }}
-      >
-        <Typography variant="body2" color="text.secondary">
+      {/* createdAt */}
+      <TableCell>
+        <Typography variant="body1" color="text.secondary">
           {formatDateTime(todo.createdAt)}
         </Typography>
       </TableCell>
 
       {/* taskID */}
-      <TableCell sx={{ position: "relative", width: "120px" }}>
-        <Typography variant="caption" color="text.secondary">
-          {todo.id.substring(0, 8)}...
+      <TableCell>
+        <Typography variant="body2" color="text.secondary" noWrap>
+          {todo.id}
         </Typography>
-        {isHovered && onDelete && (
+        {/* {isHovered && onDelete && (
           <IconButton
             size="small"
             onClick={() => onDelete(todo.id)}
@@ -166,7 +159,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({
           >
             <DeleteIcon fontSize="small" />
           </IconButton>
-        )}
+        )} */}
       </TableCell>
     </TableRow>
   );
